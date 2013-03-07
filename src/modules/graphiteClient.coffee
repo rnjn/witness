@@ -3,7 +3,8 @@ define ['jquery','config/env'], ($,env) ->
     targets = [targets] if not $.isArray(targets)
     timespan = env.monitoringSpan
     graphiteTargets = targets.join('&target=')
-    env.graphiteURI + "/render?from=-#{timespan}&until=now&target=#{graphiteTargets}&format=json&jsonp=?"
+    query = "/render?from=-#{timespan}&until=now&target=#{graphiteTargets}&format=json&jsonp=?"
+    env.graphiteURI + query
 
   getData = (target, listener) ->
     $.ajax

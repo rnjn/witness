@@ -17,10 +17,10 @@ module.exports = (grunt) ->
       all:
         options:
           no_trailing_whitespace:
-            level: "warn"
+            level: "error"
           max_line_length: 
             value: 100
-            level: "warn"
+            level: "error"
         files:
           src: ["src/**/*.coffee", "spec/*.coffee"]
     coffee:

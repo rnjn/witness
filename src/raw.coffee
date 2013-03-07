@@ -16,15 +16,16 @@ requirejs.config
     underscore:
       exports: "_"
 
-require ['jquery','lib/domReady', 'modules/graphiteClient'], ($,domReady,graphiteClient) ->
+require ['jquery','lib/domReady', 'modules/graphiteClient', 'modules/configuration'],
+($,domReady,graphiteClient, config) ->
   domReady () ->
-    target = 'stats.gauges.witness.fake.vm.*.*.usage'
-    listener = (data) -> 
+    listener = (data) ->
       $('#data').append JSON.stringify(data)
       $(window).scrollTop(document.body.scrollHeight)
 
-    graphiteClient.getData target, listener
+    targets = config.allDashboardTargets()
+    graphiteClient.getData targets, listener
     setInterval (->
-      graphiteClient.getData target, listener
+      graphiteClient.getData targets, listener
       ), 10000
     []
