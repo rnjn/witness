@@ -24,6 +24,9 @@
     "grunt-template-jasmine-requirejs": "*",
     "grunt-contrib-connect": "*",
     "grunt-contrib-coffee": "*",
-    "grunt-contrib-clean": "*"
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-watch": "*",
+    "statsd-client":"*",
+    "requirejs":"*"
   }
 }

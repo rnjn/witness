@@ -3,9 +3,13 @@ define ['jquery','config/env'], ($,env) ->
     targets = [targets] if not $.isArray(targets)
     timespan = env.monitoringSpan
     graphiteTargets = targets.join('&target=')
-    env.graphiteURI + "/render?from=-#{timespan}&until=now&target=#{graphiteTargets}&format=json&callback=?"
+    env.graphiteURI + "/render?from=-#{timespan}&until=now&target=#{graphiteTargets}&format=json&jsonp=?"
 
   getData = (target, listener) ->
-    $.getJSON(createGraphiteUriFor(target)).success(listener)
+    $.ajax
+      url: createGraphiteUriFor(target)
+      dataType: 'json'
+      jsonp: 'jsonp'
+      success: listener
 
   getData : getData

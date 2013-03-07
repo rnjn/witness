@@ -6,6 +6,10 @@ module.exports = (grunt) ->
       "spec/*.js",
     ]
 
+    watch: 
+      files: ["src/**/*.coffee", "spec/*.coffee"]
+      tasks: ['coffee']
+
     jshint:
       all: ["grunt.js"]
 
@@ -74,6 +78,11 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks "grunt-coffeelint"
   grunt.loadNpmTasks "grunt-contrib-coffee"
   grunt.loadNpmTasks "grunt-contrib-clean"
+  grunt.loadNpmTasks "grunt-contrib-watch"
+
+  grunt.registerTask "server", "Start the web server", () ->
+    server = require  './server.coffee' 
 
   grunt.registerTask "build", ["jshint", "coffeelint", "clean", "coffee", "jasmine"]
+  grunt.registerTask "run", ["build","server","watch"]
   grunt.registerTask "default", "build"

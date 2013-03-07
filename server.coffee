@@ -4,7 +4,7 @@ routes = require './routes'
 http = require 'http'
 path = require 'path'
 
-app = express()
+app = module.exports = express()
 
 app.configure ->
   app.set 'port', process.env.PORT || 3000
@@ -22,6 +22,7 @@ app.configure 'development', ->
   app.use express.errorHandler()
 
 app.get '/', routes.index
+app.get '/raw', routes.raw
 
 http.createServer(app).listen app.get('port'), ->
   console.log "Express server listening on port " + app.get 'port'
