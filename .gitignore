@@ -4,6 +4,7 @@ pids
 logs/*
 npm-debug.log
 node_modules
+public/javascripts/*.js
 public/javascripts/config/*.js
 public/javascripts/modules/*.js
 spec/*.js
